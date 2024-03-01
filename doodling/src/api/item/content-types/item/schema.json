@@ -15,12 +15,6 @@
     "name": {
       "type": "string"
     },
-    "shortDescription": {
-      "type": "blocks"
-    },
-    "longDescription": {
-      "type": "blocks"
-    },
     "price": {
       "type": "decimal"
     },
@@ -46,6 +40,12 @@
         "murals",
         "doodles"
       ]
+    },
+    "shortDescription": {
+      "type": "string"
+    },
+    "longDescription": {
+      "type": "text"
     }
   }
 }

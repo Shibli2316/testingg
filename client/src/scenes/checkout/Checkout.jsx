@@ -18,8 +18,12 @@ const Checkout = () => {
   const isFirstStep = activeStep === 0;
   const isSecondStep = activeStep === 1;
 
+  const [firstName, setFirstName] = useState("");
+  console.log("isiusfkjjfshivsfj")
+
   const handleFormSubmit = async (values, actions) => {
     setActiveStep(activeStep + 1);
+    console.log(values);  
 
     // this copies the billing address onto shipping address
     if (isFirstStep && values.shippingAddress.isSameAddress) {
@@ -34,18 +38,24 @@ const Checkout = () => {
     }
 
     actions.setTouched({});
+    setFirstName(values.billingAddress.firstName);
+    
   };
+ 
 
   async function makePayment(values) {
     const stripe = await stripePromise;
+    console.log(values);
+    
     const requestBody = {
-      userName: [values.firstName, values.lastName].join(" "),
+      userName: [values.billingAddress.firstName, values.billingAddress.lastName].join(" "),
       email: values.email,
       products: cart.map(({ id, count }) => ({
         id,
         count,
       })),
     };
+    console.log("requestbody" + requestBody); 
 
     const response = await fetch("http://localhost:1337/api/orders", {
       method: "POST",

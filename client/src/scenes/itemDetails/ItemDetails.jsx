@@ -32,6 +32,7 @@ const ItemDetails = () => {
     );
     const itemJson = await item.json();
     setItem(itemJson.data);
+    console.log(item)
   }
 
   async function getItems() {
